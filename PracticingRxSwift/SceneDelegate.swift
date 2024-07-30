@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let vc = PickerViewViewController()
+        let vc = TableViewController()
         window?.rootViewController = vc // storyboard entrypoint
         window?.makeKeyAndVisible() // 실제로 사용자에게 보여지게끔 하는 코드
     }

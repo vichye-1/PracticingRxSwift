@@ -1,5 +1,5 @@
 //
-//  PickerViewViewController.swift
+//  PickerViewController.swift
 //  PracticingRxSwift
 //
 //  Created by 양승혜 on 7/30/24.
@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class PickerViewViewController: BaseViewController {
+class PickerViewController: BaseViewController {
     
     let disposeBag = DisposeBag()
     
