@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class TableViewController: BaseViewController {
-    let disposeBag = DisposeBag()
-    let simpleTableView = UITableView()
-    let simpleLabel = UILabel()
+final class TableViewController: BaseViewController {
+    private let disposeBag = DisposeBag()
+    private let simpleTableView = UITableView()
+    private let simpleLabel = UILabel()
     
     // MARK: - UI Components
     override func configureHierarchy() {

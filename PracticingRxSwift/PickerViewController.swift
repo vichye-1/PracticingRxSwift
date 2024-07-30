@@ -10,12 +10,12 @@ import RxSwift
 import RxCocoa
 import SnapKit
 
-class PickerViewController: BaseViewController {
+final class PickerViewController: BaseViewController {
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
-    let simplePickerView = UIPickerView()
-    let simpleLabel = UILabel()
+    private let simplePickerView = UIPickerView()
+    private let simpleLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
