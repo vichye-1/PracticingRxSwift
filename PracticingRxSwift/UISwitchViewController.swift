@@ -28,17 +28,28 @@ final class UISwitchViewController: BaseViewController {
             make.height.equalTo(80)
         }
         simpleLabel.backgroundColor = .lightGray
+        simpleLabel.textAlignment = .center
     }
     
     // MARK: - view LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setSwitch()
+        setLabel()
     }
     
     private func setSwitch() {
         Observable.of(false)
             .bind(to: simpleSwitch.rx.isOn)
+            .disposed(by: disposeBag)
+    }
+    
+    private func setLabel() {
+        simpleSwitch.rx.isOn
+            .map { isOn in
+                isOn ? "스위치가 켜졌습니다" : "스위치가 꺼졌습니다"
+            }
+            .bind(to: simpleLabel.rx.text)
             .disposed(by: disposeBag)
     }
 }
