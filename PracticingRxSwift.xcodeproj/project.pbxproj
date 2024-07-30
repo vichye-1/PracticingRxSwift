@@ -20,6 +20,7 @@
 		EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA542C58D9B600E584FF /* BaseViewController.swift */; };
 		EF16DA572C58DB5100E584FF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA562C58DB5100E584FF /* TableViewController.swift */; };
 		EF16DA592C58E32900E584FF /* UISwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA582C58E32900E584FF /* UISwitchViewController.swift */; };
+		EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA5A2C58E87D00E584FF /* UITextFieldViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		EF16DA542C58D9B600E584FF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EF16DA562C58DB5100E584FF /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		EF16DA582C58E32900E584FF /* UISwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISwitchViewController.swift; sourceTree = "<group>"; };
+		EF16DA5A2C58E87D00E584FF /* UITextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				EF16DA492C58D37000E584FF /* PickerViewController.swift */,
 				EF16DA562C58DB5100E584FF /* TableViewController.swift */,
 				EF16DA582C58E32900E584FF /* UISwitchViewController.swift */,
+				EF16DA5A2C58E87D00E584FF /* UITextFieldViewController.swift */,
 			);
 			path = PracticingRxSwift;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */,
 				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
 				EF16DA572C58DB5100E584FF /* TableViewController.swift in Sources */,
 				EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */,
