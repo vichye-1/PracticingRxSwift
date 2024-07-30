@@ -13,6 +13,11 @@
 		EF16DA3D2C58D00600E584FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EF16DA3C2C58D00600E584FF /* Base */; };
 		EF16DA3F2C58D00700E584FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF16DA3E2C58D00700E584FF /* Assets.xcassets */; };
 		EF16DA422C58D00700E584FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EF16DA412C58D00700E584FF /* Base */; };
+		EF16DA4A2C58D37000E584FF /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA492C58D37000E584FF /* PickerViewViewController.swift */; };
+		EF16DA4D2C58D3B700E584FF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF16DA4C2C58D3B700E584FF /* SnapKit */; };
+		EF16DA502C58D3D100E584FF /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = EF16DA4F2C58D3D100E584FF /* RxCocoa */; };
+		EF16DA522C58D3D100E584FF /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EF16DA512C58D3D100E584FF /* RxSwift */; };
+		EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA542C58D9B600E584FF /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,8 @@
 		EF16DA3E2C58D00700E584FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF16DA412C58D00700E584FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF16DA432C58D00700E584FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EF16DA492C58D37000E584FF /* PickerViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewViewController.swift; sourceTree = "<group>"; };
+		EF16DA542C58D9B600E584FF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF16DA522C58D3D100E584FF /* RxSwift in Frameworks */,
+				EF16DA502C58D3D100E584FF /* RxCocoa in Frameworks */,
+				EF16DA4D2C58D3B700E584FF /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,7 @@
 		EF16DA342C58D00600E584FF /* PracticingRxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				EF16DA532C58D9AD00E584FF /* Base */,
 				EF16DA352C58D00600E584FF /* AppDelegate.swift */,
 				EF16DA372C58D00600E584FF /* SceneDelegate.swift */,
 				EF16DA392C58D00600E584FF /* ViewController.swift */,
@@ -63,8 +74,17 @@
 				EF16DA3E2C58D00700E584FF /* Assets.xcassets */,
 				EF16DA402C58D00700E584FF /* LaunchScreen.storyboard */,
 				EF16DA432C58D00700E584FF /* Info.plist */,
+				EF16DA492C58D37000E584FF /* PickerViewViewController.swift */,
 			);
 			path = PracticingRxSwift;
+			sourceTree = "<group>";
+		};
+		EF16DA532C58D9AD00E584FF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				EF16DA542C58D9B600E584FF /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +103,11 @@
 			dependencies = (
 			);
 			name = PracticingRxSwift;
+			packageProductDependencies = (
+				EF16DA4C2C58D3B700E584FF /* SnapKit */,
+				EF16DA4F2C58D3D100E584FF /* RxCocoa */,
+				EF16DA512C58D3D100E584FF /* RxSwift */,
+			);
 			productName = PracticingRxSwift;
 			productReference = EF16DA322C58D00600E584FF /* PracticingRxSwift.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +136,10 @@
 				Base,
 			);
 			mainGroup = EF16DA292C58D00600E584FF;
+			packageReferences = (
+				EF16DA4B2C58D3B700E584FF /* XCRemoteSwiftPackageReference "SnapKit" */,
+				EF16DA4E2C58D3D100E584FF /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = EF16DA332C58D00600E584FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +167,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
 				EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */,
+				EF16DA4A2C58D37000E584FF /* PickerViewViewController.swift in Sources */,
 				EF16DA362C58D00600E584FF /* AppDelegate.swift in Sources */,
 				EF16DA382C58D00600E584FF /* SceneDelegate.swift in Sources */,
 			);
@@ -297,8 +328,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,9 +338,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seunghye.PracticingRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -324,8 +360,9 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -333,9 +370,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.seunghye.PracticingRxSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -361,6 +402,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EF16DA4B2C58D3B700E584FF /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		EF16DA4E2C58D3D100E584FF /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EF16DA4C2C58D3B700E584FF /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF16DA4B2C58D3B700E584FF /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		EF16DA4F2C58D3D100E584FF /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF16DA4E2C58D3D100E584FF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		EF16DA512C58D3D100E584FF /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EF16DA4E2C58D3D100E584FF /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EF16DA2A2C58D00600E584FF /* Project object */;
 }
