@@ -24,6 +24,7 @@
 		EF16DA5F2C58F2C100E584FF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA5E2C58F2C100E584FF /* TabBarController.swift */; };
 		EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */; };
 		EF16DA6C2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */; };
+		EF16DA6E2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		EF16DA5E2C58F2C100E584FF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleTabBarController.swift; sourceTree = "<group>"; };
 		EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewExampleViewController.swift; sourceTree = "<group>"; };
+		EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerViewExampleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */,
+				EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */,
 			);
 			path = RxExample;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				EF16DA5F2C58F2C100E584FF /* TabBarController.swift in Sources */,
 				EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */,
 				EF16DA4A2C58D37000E584FF /* PickerViewController.swift in Sources */,
+				EF16DA6E2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift in Sources */,
 				EF16DA592C58E32900E584FF /* UISwitchViewController.swift in Sources */,
 				EF16DA362C58D00600E584FF /* AppDelegate.swift in Sources */,
 				EF16DA382C58D00600E584FF /* SceneDelegate.swift in Sources */,
