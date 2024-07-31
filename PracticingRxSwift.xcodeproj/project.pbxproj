@@ -22,6 +22,7 @@
 		EF16DA592C58E32900E584FF /* UISwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA582C58E32900E584FF /* UISwitchViewController.swift */; };
 		EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA5A2C58E87D00E584FF /* UITextFieldViewController.swift */; };
 		EF16DA5F2C58F2C100E584FF /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA5E2C58F2C100E584FF /* TabBarController.swift */; };
+		EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		EF16DA582C58E32900E584FF /* UISwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISwitchViewController.swift; sourceTree = "<group>"; };
 		EF16DA5A2C58E87D00E584FF /* UITextFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldViewController.swift; sourceTree = "<group>"; };
 		EF16DA5E2C58F2C100E584FF /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				EF16DA5E2C58F2C100E584FF /* TabBarController.swift */,
+				EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */,
 				EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */,
 				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
 				EF16DA572C58DB5100E584FF /* TableViewController.swift in Sources */,
