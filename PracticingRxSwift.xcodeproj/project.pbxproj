@@ -25,6 +25,7 @@
 		EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */; };
 		EF16DA6C2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */; };
 		EF16DA6E2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */; };
+		EF16DA702C5A8A0B00E584FF /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		EF16DA682C5A59AC00E584FF /* RxExampleTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExampleTabBarController.swift; sourceTree = "<group>"; };
 		EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewExampleViewController.swift; sourceTree = "<group>"; };
 		EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerViewExampleViewController.swift; sourceTree = "<group>"; };
+		EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */,
 				EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */,
+				EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */,
 			);
 			path = RxExample;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
 				EF16DA572C58DB5100E584FF /* TableViewController.swift in Sources */,
 				EF16DA5F2C58F2C100E584FF /* TabBarController.swift in Sources */,
+				EF16DA702C5A8A0B00E584FF /* NumbersViewController.swift in Sources */,
 				EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */,
 				EF16DA4A2C58D37000E584FF /* PickerViewController.swift in Sources */,
 				EF16DA6E2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift in Sources */,
