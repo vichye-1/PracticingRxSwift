@@ -26,6 +26,7 @@
 		EF16DA6C2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */; };
 		EF16DA6E2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */; };
 		EF16DA702C5A8A0B00E584FF /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */; };
+		EF16DA722C5A8DAE00E584FF /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA712C5A8DAE00E584FF /* SimpleValidationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewExampleViewController.swift; sourceTree = "<group>"; };
 		EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerViewExampleViewController.swift; sourceTree = "<group>"; };
 		EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
+		EF16DA712C5A8DAE00E584FF /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				EF16DA6B2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift */,
 				EF16DA6D2C5A85D600E584FF /* SimplePickerViewExampleViewController.swift */,
 				EF16DA6F2C5A8A0B00E584FF /* NumbersViewController.swift */,
+				EF16DA712C5A8DAE00E584FF /* SimpleValidationViewController.swift */,
 			);
 			path = RxExample;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF16DA6C2C5A5A3A00E584FF /* SimpleTableViewExampleViewController.swift in Sources */,
+				EF16DA722C5A8DAE00E584FF /* SimpleValidationViewController.swift in Sources */,
 				EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */,
 				EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */,
 				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
