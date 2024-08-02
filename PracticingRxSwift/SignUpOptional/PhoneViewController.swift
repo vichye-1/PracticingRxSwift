@@ -34,6 +34,20 @@ final class PhoneViewController: UIViewController {
     }
     
     private func bind() {
+        let validation = phoneTextField.rx.text.orEmpty
+            .map { $0.count >= 10 }
+        
+        validation.bind(to: nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        validation
+            .bind(with: self) { owner, value in
+                let color: UIColor = value ? .systemBlue : .systemGray
+                owner.nextButton.backgroundColor = color
+            }
+            .disposed(by: disposeBag)
+        
+        
         phoneData.bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         
