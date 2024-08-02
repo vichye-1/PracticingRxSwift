@@ -7,11 +7,23 @@
  
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 class PhoneViewController: UIViewController {
    
-    let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
-    let nextButton = PointButton(title: "다음")
+    private var disposeBag = DisposeBag()
+    
+    private let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
+    private let nextButton = PointButton(title: "다음")
+    
+    private let phoneData = BehaviorSubject(value: "010")
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        disposeBag = DisposeBag()
+        bind()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +31,14 @@ class PhoneViewController: UIViewController {
         view.backgroundColor = Color.white
         
         configureLayout()
-        
-        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
     }
     
-    @objc func nextButtonClicked() {
-        navigationController?.pushViewController(NicknameViewController(), animated: true)
+    private func bind() {
+        nextButton.rx.tap
+            .bind(with: self) { owner, value in
+                owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 
     
