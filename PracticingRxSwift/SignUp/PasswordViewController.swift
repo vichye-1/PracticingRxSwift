@@ -10,7 +10,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-final class PasswordViewController: UIViewController {
+final class PasswordViewController: BaseViewController {
    
     private let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
     private let nextButton = PointButton(title: "다음")
@@ -52,6 +52,8 @@ final class PasswordViewController: UIViewController {
                 let color: UIColor = value ? .systemBlue : .systemGray
                 owner.nextButton.backgroundColor = color
                 //owner.nextButton.isHidden = !value
+                owner.descriptionLabel.isHidden = value
+                owner.descriptionLabel.textColor = .systemRed
             }
             .disposed(by: disposeBag)
         
@@ -62,9 +64,10 @@ final class PasswordViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    func configureLayout() {
+    override func configureLayout() {
         view.addSubview(passwordTextField)
         view.addSubview(nextButton)
+        view.addSubview(descriptionLabel)
          
         passwordTextField.snp.makeConstraints { make in
             make.height.equalTo(50)
@@ -72,11 +75,20 @@ final class PasswordViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordTextField.snp.bottom).offset(4)
+            make.horizontalEdges.equalTo(passwordTextField)
+        }
+        
         nextButton.snp.makeConstraints { make in
             make.height.equalTo(50)
-            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(30)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
-
+    
+    override func configureView() {
+        descriptionLabel.font = .systemFont(ofSize: 13)
+    }
+    
 }
