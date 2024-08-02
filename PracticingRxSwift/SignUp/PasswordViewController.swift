@@ -49,8 +49,9 @@ final class PasswordViewController: UIViewController {
         
         validation
             .bind(with: self) { owner, value in
-                let color: UIColor = value ? .systemBlue : .systemRed
+                let color: UIColor = value ? .systemBlue : .systemGray
                 owner.nextButton.backgroundColor = color
+                //owner.nextButton.isHidden = !value
             }
             .disposed(by: disposeBag)
         
