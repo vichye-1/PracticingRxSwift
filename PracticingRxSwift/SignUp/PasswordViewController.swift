@@ -29,6 +29,7 @@ final class PasswordViewController: UIViewController {
     }
     
     @objc func nextButtonClicked() {
+        print("buttonclicked")
         navigationController?.pushViewController(PhoneViewController(), animated: true)
     }
     
