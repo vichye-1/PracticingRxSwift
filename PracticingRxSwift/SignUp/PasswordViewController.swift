@@ -18,7 +18,14 @@ final class PasswordViewController: UIViewController {
     
     private let validText = Observable.just("8자 이상 입력해주세요")
     
-    private let disposeBag = DisposeBag()
+    private var disposeBag = DisposeBag()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        disposeBag = DisposeBag()
+        
+        bind()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +33,8 @@ final class PasswordViewController: UIViewController {
         view.backgroundColor = Color.white
         
         configureLayout()
-         
-        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
         
-        bind()
+        disposeBag = DisposeBag()
     }
     
     private func bind() {
@@ -54,11 +59,6 @@ final class PasswordViewController: UIViewController {
                 owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
             }
             .disposed(by: disposeBag)
-    }
-    
-    @objc func nextButtonClicked() {
-        print("buttonclicked")
-        navigationController?.pushViewController(PhoneViewController(), animated: true)
     }
     
     func configureLayout() {
