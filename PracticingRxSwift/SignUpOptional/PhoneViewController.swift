@@ -10,7 +10,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
-class PhoneViewController: UIViewController {
+final class PhoneViewController: UIViewController {
    
     private var disposeBag = DisposeBag()
     
@@ -34,6 +34,9 @@ class PhoneViewController: UIViewController {
     }
     
     private func bind() {
+        phoneData.bind(to: phoneTextField.rx.text)
+            .disposed(by: disposeBag)
+        
         nextButton.rx.tap
             .bind(with: self) { owner, value in
                 owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
