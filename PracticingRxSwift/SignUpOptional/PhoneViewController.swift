@@ -35,7 +35,8 @@ final class PhoneViewController: UIViewController {
     
     private func bind() {
         let validation = phoneTextField.rx.text.orEmpty
-            .map { $0.count >= 10 }
+            .map { text in
+                return text.allSatisfy { $0.isNumber } && text.count >= 10 }
         
         validation.bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
