@@ -13,7 +13,17 @@ import RxSwift
 final class BirthdayViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
-    private let infoData = BehaviorSubject(value: InfoStatus.initial.infoLabelString)
+    private let infoData = BehaviorRelay(value: InfoStatus.initial.infoLabelString)
+    
+    private let year = BehaviorRelay(value: 2024)
+    private let month = BehaviorRelay(value: 8)
+    private let day = BehaviorRelay(value: 3)
+    
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko-KR")
+        return formatter
+    }()
     
     let birthDayPicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -86,9 +96,30 @@ final class BirthdayViewController: UIViewController {
     }
     
     // MARK: - custom functions
-    
     private func bind() {
+        // infoData 문구 infoLabel에 삽입하는 코드
         infoData.bind(to: infoLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        birthDayPicker.rx.date
+            .bind(with: self) { owner, date in
+                owner.updateDateLabels(date: date)
+            }
+            .disposed(by: disposeBag)
+        
+        year
+            .map { "\($0)년" }
+            .bind(to: yearLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        month
+            .map { "\($0)월" }
+            .bind(to: monthLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        day
+            .map { "\($0)일" }
+            .bind(to: dayLabel.rx.text)
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
@@ -98,6 +129,15 @@ final class BirthdayViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    private func updateDateLabels(date: Date) {
+        let components = Calendar.current.dateComponents([.year, .month, .day], from: date)
+        
+        year.accept(components.year ?? 2024)
+        month.accept(components.month ?? 1)
+        day.accept(components.day ?? 1)
+    }
+    
+    // MARK: - UI configuration
     func configureLayout() {
         view.addSubview(infoLabel)
         view.addSubview(containerStackView)
