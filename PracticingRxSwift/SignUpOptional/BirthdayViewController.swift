@@ -83,8 +83,6 @@ final class BirthdayViewController: UIViewController {
         view.backgroundColor = Color.white
         
         configureLayout()
-        
-        nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
     }
     
     // MARK: - custom functions
@@ -92,12 +90,13 @@ final class BirthdayViewController: UIViewController {
     private func bind() {
         infoData.bind(to: infoLabel.rx.text)
             .disposed(by: disposeBag)
+        
+        nextButton.rx.tap
+            .bind(with: self) { owner, _ in
+                owner.navigationController?.pushViewController(SearchViewController(), animated: true)
+            }
+            .disposed(by: disposeBag)
     }
-    
-    @objc func nextButtonClicked() {
-        navigationController?.pushViewController(SearchViewController(), animated: true)
-    }
-
     
     func configureLayout() {
         view.addSubview(infoLabel)
