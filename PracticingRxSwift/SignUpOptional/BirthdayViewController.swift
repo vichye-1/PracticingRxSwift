@@ -7,8 +7,13 @@
  
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
-class BirthdayViewController: UIViewController {
+final class BirthdayViewController: UIViewController {
+    
+    private var disposeBag = DisposeBag()
+    private let infoData = BehaviorSubject(value: InfoStatus.initial.infoLabelString)
     
     let birthDayPicker: UIDatePicker = {
         let picker = UIDatePicker()
@@ -22,7 +27,6 @@ class BirthdayViewController: UIViewController {
     let infoLabel: UILabel = {
        let label = UILabel()
         label.textColor = Color.black
-        label.text = "만 17세 이상만 가입 가능합니다."
         return label
     }()
     
@@ -66,6 +70,13 @@ class BirthdayViewController: UIViewController {
   
     let nextButton = PointButton(title: "가입하기")
     
+    // MARK: - View LifeCycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        disposeBag = DisposeBag()
+        bind()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,6 +85,13 @@ class BirthdayViewController: UIViewController {
         configureLayout()
         
         nextButton.addTarget(self, action: #selector(nextButtonClicked), for: .touchUpInside)
+    }
+    
+    // MARK: - custom functions
+    
+    private func bind() {
+        infoData.bind(to: infoLabel.rx.text)
+            .disposed(by: disposeBag)
     }
     
     @objc func nextButtonClicked() {
@@ -112,5 +130,23 @@ class BirthdayViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
     }
+}
 
+extension BirthdayViewController {
+    private enum InfoStatus {
+        case invalid
+        case valid
+        case initial
+        
+        var infoLabelString: String {
+            switch self {
+            case .invalid:
+                return "만 17세 이상만 가입 가능합니다"
+            case .valid:
+                return "가입 가능한 나이입니다"
+            case .initial:
+                return "만 17세 이상만 가입 가능합니다"
+            }
+        }
+    }
 }
