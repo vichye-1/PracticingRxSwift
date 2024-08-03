@@ -11,15 +11,20 @@ import RxCocoa
 import RxSwift
 
 final class PhoneViewController: BaseViewController {
+    private enum ValidationState {
+        case invalidCharacters
+        case tooShort
+        case valid
+    }
    
     private var disposeBag = DisposeBag()
     
-    private let phoneTextField = SignTextField(placeholderText: "연락처를 입력해주세요")
+    private let phoneTextField = SignTextField(placeholderText: PlaceHolder.textField.defaultString)
     private let nextButton = PointButton(title: "다음")
     private let descriptionLabel = UILabel()
     
     private let phoneData = BehaviorSubject(value: "010")
-    private let validText = Observable.just("10자 이상의 숫자를 입력해주세요")
+    private let validText = BehaviorSubject(value: PlaceHolder.description.defaultString)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,28 +44,51 @@ final class PhoneViewController: BaseViewController {
         validText.bind(to: descriptionLabel.rx.text)
             .disposed(by: disposeBag)
         
-        let validation = phoneTextField.rx.text.orEmpty
-            .map { text in
-                return text.allSatisfy { $0.isNumber } && text.count >= 10 }
+        let inputPhoneNumber = phoneTextField.rx.text.orEmpty
         
-        validation.bind(to: nextButton.rx.isEnabled)
+        let validationState = inputPhoneNumber
+            .map { text -> ValidationState in
+                if !text.allSatisfy({$0.isNumber}) {
+                    return .invalidCharacters
+                } else if text.count < 10 {
+                    return .tooShort
+                } else {
+                    return .valid
+                }
+            }
+        
+        validationState.map { state -> String in
+            switch state {
+            case .invalidCharacters:
+                return Errors.stringError.errorString
+            case .tooShort:
+                return Errors.lengthError.errorString
+            case .valid:
+                return ""
+            }
+        }
+        .bind(to: descriptionLabel.rx.text)
+        .disposed(by: disposeBag)
+        
+        validationState
+            .map{ $0 == .valid }
+            .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        validation
-            .bind(with: self) { owner, value in
-                let color: UIColor = value ? .systemBlue : .systemGray
+        validationState
+            .bind(with: self) { owner, state in
+                let color: UIColor = state == .valid ? .systemBlue : .systemGray
                 owner.nextButton.backgroundColor = color
-                owner.descriptionLabel.isHidden = value
+                owner.descriptionLabel.isHidden = state == .valid
                 owner.descriptionLabel.textColor = .systemRed
             }
             .disposed(by: disposeBag)
-        
         
         phoneData.bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .bind(with: self) { owner, value in
+            .bind(with: self) { owner, _ in
                 owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
             }
             .disposed(by: disposeBag)
@@ -94,4 +122,34 @@ final class PhoneViewController: BaseViewController {
         descriptionLabel.font = .systemFont(ofSize: 13)
     }
 
+}
+
+extension PhoneViewController {
+    private enum Errors {
+        case stringError
+        case lengthError
+        
+        var errorString: String {
+            switch self {
+            case .stringError:
+                return "숫자만 입력해주세요"
+            case .lengthError:
+                return "10자 이상 입력해주세요"
+            }
+        }
+    }
+    
+    private enum PlaceHolder {
+        case textField
+        case description
+        
+        var defaultString: String {
+            switch self {
+            case .textField:
+                return "연락처를 입력해주세요"
+            case .description:
+                return "10자리 이상의 숫자를 입력해주세요"
+            }
+        }
+    }
 }
