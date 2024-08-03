@@ -23,7 +23,7 @@ final class PhoneViewController: BaseViewController {
     private let nextButton = PointButton(title: "다음")
     private let descriptionLabel = UILabel()
     
-    private let phoneData = BehaviorSubject(value: "010")
+    private let phoneData = BehaviorRelay(value: "010")
     private let validText = BehaviorSubject(value: PlaceHolder.description.defaultString)
     
     override func viewWillAppear(_ animated: Bool) {
