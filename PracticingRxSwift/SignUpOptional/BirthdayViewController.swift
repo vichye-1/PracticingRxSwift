@@ -14,6 +14,7 @@ final class BirthdayViewController: UIViewController {
     
     private var disposeBag = DisposeBag()
     private let infoData = BehaviorRelay(value: InfoStatus.initial.infoLabelString)
+    private let isValidAge = BehaviorRelay(value: false)
     
     private let year = BehaviorRelay(value: 2024)
     private let month = BehaviorRelay(value: 8)
@@ -101,6 +102,7 @@ final class BirthdayViewController: UIViewController {
         infoData.bind(to: infoLabel.rx.text)
             .disposed(by: disposeBag)
         
+        // 날짜 변경 감지 - updateDateLabel function 사용
         birthDayPicker.rx.date
             .bind(with: self) { owner, date in
                 owner.updateDateLabels(date: date)
@@ -121,6 +123,32 @@ final class BirthdayViewController: UIViewController {
             .map { "\($0)일" }
             .bind(to: dayLabel.rx.text)
             .disposed(by: disposeBag)
+       
+        Observable.combineLatest(year, month, day)
+            .map { year, month, day in
+                if let birthday = DateComponents(calendar: .current, year: year, month: month, day: day).date {
+                    let age = Calendar.current.dateComponents([.year], from: birthday, to: Date()).year ?? 0
+                    return age >= 17
+                }
+                return false
+            }
+            .bind(to: isValidAge)
+            .disposed(by: disposeBag)
+        
+        isValidAge
+            .map { $0 ? InfoStatus.valid : InfoStatus.invalid }
+            .map { $0.infoLabelString }
+            .bind(to: infoLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        isValidAge
+            .bind(to: nextButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        isValidAge
+            .map { $0 ? UIColor.systemBlue: UIColor.systemGray}
+            .bind(to: nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
         
         nextButton.rx.tap
             .bind(with: self) { owner, _ in
@@ -135,6 +163,13 @@ final class BirthdayViewController: UIViewController {
         year.accept(components.year ?? 2024)
         month.accept(components.month ?? 1)
         day.accept(components.day ?? 1)
+        
+        if let birthDate = Calendar.current.date(from: components),
+           let age = Calendar.current.dateComponents([.year], from: birthDate, to: Date()).year {
+            isValidAge.accept(age >= 17)
+        } else {
+            isValidAge.accept(false)
+        }
     }
     
     // MARK: - UI configuration
