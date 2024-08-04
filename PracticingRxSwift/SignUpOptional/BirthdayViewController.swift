@@ -146,6 +146,11 @@ final class BirthdayViewController: UIViewController {
             .disposed(by: disposeBag)
         
         isValidAge
+            .map { $0 ? UIColor.systemBlue: UIColor.systemRed}
+            .bind(to: infoLabel.rx.textColor)
+            .disposed(by: disposeBag)
+        
+        isValidAge
             .map { $0 ? UIColor.systemBlue: UIColor.systemGray}
             .bind(to: nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
