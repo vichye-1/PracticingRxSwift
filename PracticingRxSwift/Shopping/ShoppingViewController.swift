@@ -85,10 +85,6 @@ final class ShoppingViewController: BaseViewController {
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    override func configureView() {
-        
-       
-    }
     
     private func bind() {
         let identifier = ShoppingTableViewCell.identifier

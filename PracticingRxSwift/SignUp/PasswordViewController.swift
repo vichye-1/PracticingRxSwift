@@ -16,45 +16,47 @@ final class PasswordViewController: BaseViewController {
     private let nextButton = PointButton(title: "다음")
     private let descriptionLabel = UILabel()
     
-    private let validText = Observable.just("8자 이상 입력해주세요")
-    
+    private let viewModel = PasswordViewModel()
     private var disposeBag = DisposeBag()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         disposeBag = DisposeBag()
-        
         bind()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = Color.white
-        
         configureLayout()
-        
         disposeBag = DisposeBag()
     }
     
     private func bind() {
-        validText.bind(to: descriptionLabel.rx.text)
+        let input = PasswordViewModel.Input(
+            password: passwordTextField.rx.text.orEmpty.asObservable(),
+            nextButtonTap: nextButton.rx.tap.asObservable())
+        
+        let output = viewModel.transform(input: input)
+        
+        output.isvalid
+            .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        let validation = passwordTextField.rx.text.orEmpty
-            .map { $0.count >= 8 }
-        
-        validation.bind(to: nextButton.rx.isEnabled)
+        output.descriptionText
+            .drive(descriptionLabel.rx.text)
             .disposed(by: disposeBag)
         
-        validation
-            .bind(with: self) { owner, value in
-                let color: UIColor = value ? .systemBlue : .systemGray
-                owner.nextButton.backgroundColor = color
-                //owner.nextButton.isHidden = !value
-                owner.descriptionLabel.isHidden = value
-                owner.descriptionLabel.textColor = .systemRed
-            }
+        output.nextButtonColor
+            .drive(nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.nextButtonColor
+            .drive(nextButton.rx.backgroundColor)
+            .disposed(by: disposeBag)
+        
+        output.descriptionLabelHidden
+            .drive(descriptionLabel.rx.isHidden)
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
@@ -90,5 +92,4 @@ final class PasswordViewController: BaseViewController {
     override func configureView() {
         descriptionLabel.font = .systemFont(ofSize: 13)
     }
-    
 }

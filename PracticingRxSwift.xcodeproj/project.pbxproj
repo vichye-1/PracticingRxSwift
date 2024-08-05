@@ -30,6 +30,7 @@
 		EFCB8C492C61111B004E4C95 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C482C61111B004E4C95 /* BaseTableViewCell.swift */; };
 		EFCB8C4C2C6113C7004E4C95 /* ReuseidentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C4B2C6113C7004E4C95 /* ReuseidentifierProtocol.swift */; };
 		EFCB8C4F2C611400004E4C95 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C4E2C611400004E4C95 /* UIView+.swift */; };
+		EFCB8C512C611CA0004E4C95 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C502C611CA0004E4C95 /* PasswordViewModel.swift */; };
 		EFF772F92C5C868600CD2100 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EFF772F82C5C868600CD2100 /* .gitignore */; };
 		EFF7730B2C5CF78500CD2100 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF772FA2C5CF78500CD2100 /* BirthdayViewController.swift */; };
 		EFF7730C2C5CF78500CD2100 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF772FB2C5CF78500CD2100 /* NicknameViewController.swift */; };
@@ -70,6 +71,7 @@
 		EFCB8C482C61111B004E4C95 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		EFCB8C4B2C6113C7004E4C95 /* ReuseidentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseidentifierProtocol.swift; sourceTree = "<group>"; };
 		EFCB8C4E2C611400004E4C95 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		EFCB8C502C611CA0004E4C95 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
 		EFF772F82C5C868600CD2100 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EFF772FA2C5CF78500CD2100 /* BirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
 		EFF772FB2C5CF78500CD2100 /* NicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				EFF773022C5CF78500CD2100 /* PasswordViewController.swift */,
+				EFCB8C502C611CA0004E4C95 /* PasswordViewModel.swift */,
 				EFF773032C5CF78500CD2100 /* SignUpViewController.swift */,
 			);
 			path = SignUp;
@@ -338,6 +341,7 @@
 				EF16DA692C5A59AC00E584FF /* RxExampleTabBarController.swift in Sources */,
 				EF16DA5B2C58E87D00E584FF /* UITextFieldViewController.swift in Sources */,
 				EF16DA552C58D9B600E584FF /* BaseViewController.swift in Sources */,
+				EFCB8C512C611CA0004E4C95 /* PasswordViewModel.swift in Sources */,
 				EFF7730B2C5CF78500CD2100 /* BirthdayViewController.swift in Sources */,
 				EFF773152C5CF78500CD2100 /* SignInViewController.swift in Sources */,
 				EFCB8C4F2C611400004E4C95 /* UIView+.swift in Sources */,
