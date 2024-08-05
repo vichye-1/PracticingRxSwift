@@ -10,13 +10,9 @@ import SnapKit
 import RxCocoa
 import RxSwift
 
+
 final class PhoneViewController: BaseViewController {
-    private enum ValidationState {
-        case invalidCharacters
-        case tooShort
-        case valid
-    }
-   
+   private let viewModel = PhoneViewModel()
     private var disposeBag = DisposeBag()
     
     private let phoneTextField = SignTextField(placeholderText: PlaceHolder.textField.defaultString)
@@ -41,56 +37,35 @@ final class PhoneViewController: BaseViewController {
     }
     
     private func bind() {
-        validText.bind(to: descriptionLabel.rx.text)
+        let input = PhoneViewModel.Input(phoneNumber: phoneTextField.rx.text.orEmpty, nextButtonTap: nextButton.rx.tap.asObservable())
+        
+        let output = viewModel.transform(input: input)
+        
+        output.isNextButtonEnabled
+            .drive(nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        let inputPhoneNumber = phoneTextField.rx.text.orEmpty
-        
-        let validationState = inputPhoneNumber
-            .map { text -> ValidationState in
-                if !text.allSatisfy({$0.isNumber}) {
-                    return .invalidCharacters
-                } else if text.count < 10 {
-                    return .tooShort
-                } else {
-                    return .valid
-                }
-            }
-        
-        validationState.map { state -> String in
-            switch state {
-            case .invalidCharacters:
-                return Errors.stringError.errorString
-            case .tooShort:
-                return Errors.lengthError.errorString
-            case .valid:
-                return ""
-            }
-        }
-        .bind(to: descriptionLabel.rx.text)
-        .disposed(by: disposeBag)
-        
-        validationState
-            .map{ $0 == .valid }
-            .bind(to: nextButton.rx.isEnabled)
+        output.nextButtonColor
+            .drive(nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
-        validationState
-            .bind(with: self) { owner, state in
-                let color: UIColor = state == .valid ? .systemBlue : .systemGray
-                owner.nextButton.backgroundColor = color
-                owner.descriptionLabel.isHidden = state == .valid
-                owner.descriptionLabel.textColor = .systemRed
-            }
+        
+        output.descriptionText
+            .drive(descriptionLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        output.validationState
+            .map { $0 == .valid }
+            .drive(descriptionLabel.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        output.navigateToNext
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController(NicknameViewController(), animated: true)
+            })
             .disposed(by: disposeBag)
         
         phoneData.bind(to: phoneTextField.rx.text)
-            .disposed(by: disposeBag)
-        
-        nextButton.rx.tap
-            .bind(with: self) { owner, _ in
-                owner.navigationController?.pushViewController(NicknameViewController(), animated: true)
-            }
             .disposed(by: disposeBag)
     }
 
@@ -125,20 +100,6 @@ final class PhoneViewController: BaseViewController {
 }
 
 extension PhoneViewController {
-    private enum Errors {
-        case stringError
-        case lengthError
-        
-        var errorString: String {
-            switch self {
-            case .stringError:
-                return "숫자만 입력해주세요"
-            case .lengthError:
-                return "10자 이상 입력해주세요"
-            }
-        }
-    }
-    
     private enum PlaceHolder {
         case textField
         case description

@@ -31,6 +31,7 @@
 		EFCB8C4C2C6113C7004E4C95 /* ReuseidentifierProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C4B2C6113C7004E4C95 /* ReuseidentifierProtocol.swift */; };
 		EFCB8C4F2C611400004E4C95 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C4E2C611400004E4C95 /* UIView+.swift */; };
 		EFCB8C512C611CA0004E4C95 /* PasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C502C611CA0004E4C95 /* PasswordViewModel.swift */; };
+		EFCB8C532C6133E0004E4C95 /* PhoneViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCB8C522C6133E0004E4C95 /* PhoneViewModel.swift */; };
 		EFF772F92C5C868600CD2100 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EFF772F82C5C868600CD2100 /* .gitignore */; };
 		EFF7730B2C5CF78500CD2100 /* BirthdayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF772FA2C5CF78500CD2100 /* BirthdayViewController.swift */; };
 		EFF7730C2C5CF78500CD2100 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF772FB2C5CF78500CD2100 /* NicknameViewController.swift */; };
@@ -72,6 +73,7 @@
 		EFCB8C4B2C6113C7004E4C95 /* ReuseidentifierProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseidentifierProtocol.swift; sourceTree = "<group>"; };
 		EFCB8C4E2C611400004E4C95 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		EFCB8C502C611CA0004E4C95 /* PasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewModel.swift; sourceTree = "<group>"; };
+		EFCB8C522C6133E0004E4C95 /* PhoneViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewModel.swift; sourceTree = "<group>"; };
 		EFF772F82C5C868600CD2100 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		EFF772FA2C5CF78500CD2100 /* BirthdayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirthdayViewController.swift; sourceTree = "<group>"; };
 		EFF772FB2C5CF78500CD2100 /* NicknameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				EFF772FA2C5CF78500CD2100 /* BirthdayViewController.swift */,
 				EFF772FB2C5CF78500CD2100 /* NicknameViewController.swift */,
 				EFF772FC2C5CF78500CD2100 /* PhoneViewController.swift */,
+				EFCB8C522C6133E0004E4C95 /* PhoneViewModel.swift */,
 			);
 			path = SignUpOptional;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFF773122C5CF78500CD2100 /* SignUpViewController.swift in Sources */,
+				EFCB8C532C6133E0004E4C95 /* PhoneViewModel.swift in Sources */,
 				EFCB8C472C6110DB004E4C95 /* ShoppingTableViewCell.swift in Sources */,
 				EFF773132C5CF78500CD2100 /* PointButton.swift in Sources */,
 				EFCB8C452C60C53A004E4C95 /* ShoppingViewController.swift in Sources */,
