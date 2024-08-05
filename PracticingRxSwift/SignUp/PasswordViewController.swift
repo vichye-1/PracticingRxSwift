@@ -59,10 +59,10 @@ final class PasswordViewController: BaseViewController {
             .drive(descriptionLabel.rx.isHidden)
             .disposed(by: disposeBag)
         
-        nextButton.rx.tap
-            .bind(with: self) { owner, value in
-                owner.navigationController?.pushViewController(PhoneViewController(), animated: true)
-            }
+        output.navigateToPhoneVC
+            .drive(onNext: { [weak self] in
+                self?.navigationController?.pushViewController(PhoneViewController(), animated: true)
+            })
             .disposed(by: disposeBag)
     }
     

@@ -22,7 +22,7 @@ class PasswordViewModel {
         let nextButtonEnabled: Driver<Bool>
         let nextButtonColor: Driver<UIColor>
         let descriptionLabelHidden: Driver<Bool>
-        
+        let navigateToPhoneVC: Driver<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -33,11 +33,12 @@ class PasswordViewModel {
         let nextButtonEnabled = isValidPassword
         let nextButtonColor = isValidPassword.map { $0 ? UIColor.systemBlue: UIColor.systemGray }
         let descriptionLabelHidden = isValidPassword
+        let navigateToPhonveVC = input.nextButtonTap.asDriver(onErrorJustReturn: ())
         return Output(isvalid: isValidPassword,
                       descriptionText: validText,
                       nextButtonEnabled: nextButtonEnabled,
                       nextButtonColor: nextButtonColor,
-                      descriptionLabelHidden: descriptionLabelHidden
+                      descriptionLabelHidden: descriptionLabelHidden, navigateToPhoneVC: navigateToPhonveVC
         )
     }
 }
