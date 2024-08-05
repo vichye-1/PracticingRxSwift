@@ -10,6 +10,12 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
+struct ShoppingItem {
+    var bought: Bool
+    let wantToBuy: String
+    var favorite: Bool
+}
+
 final class ShoppingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
@@ -35,7 +41,12 @@ final class ShoppingViewController: BaseViewController {
         button.backgroundColor = .systemGray5
         return button
     }()
-    private let shoppingTableView = UITableView()
+    private let shoppingTableView = {
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
+        tableView.register(ShoppingTableViewCell.self, forCellReuseIdentifier: ShoppingTableViewCell.identifier)
+        tableView.backgroundColor = .white
+        return tableView
+    }()
     
     private var items = BehaviorRelay<[ShoppingItem]>(value: [
         ShoppingItem(bought: false, wantToBuy: "에어팟 맥스", favorite: true),
@@ -46,7 +57,7 @@ final class ShoppingViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        bind()
     }
     
     // MARK: - UI configuration
@@ -75,30 +86,17 @@ final class ShoppingViewController: BaseViewController {
         }
     }
     override func configureView() {
- 
+        
+       
     }
-}
-
-//extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
-//    
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//    
-//    
-//}
-
-extension ShoppingViewController {
-    private struct ShoppingItem {
-        var bought: Bool
-        let wantToBuy: String
-        var favorite: Bool
+    
+    private func bind() {
+        let identifier = ShoppingTableViewCell.identifier
+        items
+            .bind(to: shoppingTableView.rx.items(cellIdentifier: identifier, cellType: ShoppingTableViewCell.self)) { (row, item, cell) in
+                cell.configure(item: item)
+            }
+            .disposed(by: disposeBag)
     }
+    
 }
