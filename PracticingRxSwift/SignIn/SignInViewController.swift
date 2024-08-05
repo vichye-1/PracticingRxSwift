@@ -7,13 +7,17 @@
 
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
-class SignInViewController: UIViewController {
+final class SignInViewController: UIViewController {
 
-    let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
-    let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
-    let signInButton = PointButton(title: "로그인")
-    let signUpButton = UIButton()
+    private let emailTextField = SignTextField(placeholderText: "이메일을 입력해주세요")
+    private let passwordTextField = SignTextField(placeholderText: "비밀번호를 입력해주세요")
+    private let signInButton = PointButton(title: "로그인")
+    private let signUpButton = UIButton()
+    
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
