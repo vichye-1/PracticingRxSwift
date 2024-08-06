@@ -19,8 +19,8 @@ struct ShoppingItem {
 final class ShoppingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
-    private let checkButtonClicked = PublishSubject<Int>()
-    private let favoriteButtonClicked = PublishSubject<Int>()
+    private let checkButtonClicked = PublishRelay<Int>()
+    private let favoriteButtonClicked = PublishRelay<Int>()
     
     private let backgroundView = {
        let view = UIView()
