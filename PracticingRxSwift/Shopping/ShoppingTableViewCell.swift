@@ -11,6 +11,16 @@ import RxSwift
 import RxCocoa
 
 final class ShoppingTableViewCell: BaseTableViewCell {
+    var disposeBag = DisposeBag()
+    
+    var checkmarkTapped: ControlEvent<Void> {
+        return checkmarkButton.rx.tap
+    }
+    
+    var favoriteTapped: ControlEvent<Void> {
+        return favoriteButton.rx.tap
+    }
+    
     private let checkmarkButton = {
         let button = UIButton()
         button.tintColor = .black
@@ -28,6 +38,11 @@ final class ShoppingTableViewCell: BaseTableViewCell {
         button.tintColor = .black
         return button
     }()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
     
     override func configureHierarchy() {
         [checkmarkButton, titleLabel, favoriteButton].forEach { contentView.addSubview($0) }

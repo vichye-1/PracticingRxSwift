@@ -19,6 +19,8 @@ struct ShoppingItem {
 final class ShoppingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
+    private let checkButtonClicked = PublishSubject<Int>()
+    private let favoriteButtonClicked = PublishSubject<Int>()
     
     private let backgroundView = {
        let view = UIView()
@@ -89,9 +91,47 @@ final class ShoppingViewController: BaseViewController {
     private func bind() {
         let identifier = ShoppingTableViewCell.identifier
         items
-            .bind(to: shoppingTableView.rx.items(cellIdentifier: identifier, cellType: ShoppingTableViewCell.self)) { (row, item, cell) in
+            .bind(to: shoppingTableView.rx.items(cellIdentifier: identifier, cellType: ShoppingTableViewCell.self)) { [weak self] (row, item, cell) in
                 cell.configure(item: item)
+                
+                guard let self = self else { return }
+                
+                cell.checkmarkTapped
+                    .map { row }
+                    .bind(to: self.checkButtonClicked)
+                    .disposed(by: cell.disposeBag)
+                
+                cell.favoriteTapped
+                    .map { row }
+                    .bind(to: self.favoriteButtonClicked)
+                    .disposed(by: cell.disposeBag)
             }
+            .disposed(by: disposeBag)
+        
+        checkButtonClicked
+            .do(onNext: { _ in
+                print("checkmarkClicked")
+            })
+            .withLatestFrom(items) { ($0, $1) }
+            .map { (index, items) -> [ShoppingItem] in
+                var updatedItems = items
+                updatedItems[index].bought.toggle()
+                return updatedItems
+            }
+            .bind(to: items)
+            .disposed(by: disposeBag)
+        
+        favoriteButtonClicked
+            .do(onNext: { _ in
+                print("favoriteButtonClicked")
+            })
+            .withLatestFrom(items) { ($0, $1) }
+            .map { (index, items) -> [ShoppingItem] in
+                    var updatedItems = items
+                updatedItems[index].favorite.toggle()
+                return updatedItems
+            }
+            .bind(to: items)
             .disposed(by: disposeBag)
     }
     
