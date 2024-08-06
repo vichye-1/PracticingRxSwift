@@ -26,6 +26,7 @@ class PhoneViewModel {
         let validationState: Driver<ValidationState>
         let isNextButtonEnabled: Driver<Bool>
         let nextButtonColor: Driver<UIColor>
+        let descriptionLabelColor: Driver<UIColor>
         let descriptionText: Driver<String>
         let navigateToNext: Driver<Void>
     }
@@ -46,7 +47,9 @@ class PhoneViewModel {
         
         let isNextButtonEnabled = validationState.map { $0 == .valid }
         
-        let nextButtonColor = validationState.map { $0 == .valid ? UIColor.systemBlue : UIColor.systemGray}
+        let nextButtonColor = validationState.map { $0 == .valid ? UIColor.systemBlue : UIColor.systemGray }
+        
+        let descriptionLabelColor = validationState.map { $0 == .valid ? UIColor.systemBlue : UIColor.systemRed }
         
         let descriptionText = validationState.map{ state -> String in
             switch state {
@@ -61,7 +64,7 @@ class PhoneViewModel {
         
         let navigateToNext = input.nextButtonTap.asDriver(onErrorJustReturn: ())
         
-        return Output(phoneData: phoneData, validationState: validationState, isNextButtonEnabled: isNextButtonEnabled, nextButtonColor: nextButtonColor, descriptionText: descriptionText, navigateToNext: navigateToNext)
+        return Output(phoneData: phoneData, validationState: validationState, isNextButtonEnabled: isNextButtonEnabled, nextButtonColor: nextButtonColor, descriptionLabelColor: descriptionLabelColor, descriptionText: descriptionText, navigateToNext: navigateToNext)
         
     }
     

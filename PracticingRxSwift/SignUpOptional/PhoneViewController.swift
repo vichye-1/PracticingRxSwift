@@ -48,6 +48,9 @@ final class PhoneViewController: BaseViewController {
             .drive(nextButton.rx.backgroundColor)
             .disposed(by: disposeBag)
         
+        output.descriptionLabelColor
+            .drive(descriptionLabel.rx.textColor)
+            .disposed(by: disposeBag)
         
         output.descriptionText
             .drive(descriptionLabel.rx.text)
