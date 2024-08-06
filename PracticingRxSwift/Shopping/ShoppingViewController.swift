@@ -19,6 +19,7 @@ struct ShoppingItem {
 final class ShoppingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
+    private let addButtonTapped = PublishRelay<Void>()
     private let checkButtonClicked = PublishRelay<Int>()
     private let favoriteButtonClicked = PublishRelay<Int>()
     
@@ -133,6 +134,21 @@ final class ShoppingViewController: BaseViewController {
             }
             .bind(to: items)
             .disposed(by: disposeBag)
+        
+        addButtonTapped
+            .withLatestFrom(addTextField.rx.text.orEmpty)
+            .filter { !$0.isEmpty }
+            .withLatestFrom(items) { (text, items) -> [ShoppingItem] in
+                    let newItem = ShoppingItem(bought: false, wantToBuy: text, favorite: false)
+                return items + [newItem]
+            }
+            .bind(to: items)
+            .disposed(by: disposeBag)
+        
+        addButton.rx.tap
+            .bind(to: addButtonTapped)
+            .disposed(by: disposeBag)
+        
     }
     
 }
