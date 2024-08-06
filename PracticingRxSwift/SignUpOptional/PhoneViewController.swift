@@ -19,7 +19,6 @@ final class PhoneViewController: BaseViewController {
     private let nextButton = PointButton(title: "다음")
     private let descriptionLabel = UILabel()
     
-    private let phoneData = BehaviorRelay(value: "010")
     private let validText = BehaviorSubject(value: PlaceHolder.description.defaultString)
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +64,8 @@ final class PhoneViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        phoneData.bind(to: phoneTextField.rx.text)
+        output.phoneData
+            .bind(to: phoneTextField.rx.text)
             .disposed(by: disposeBag)
     }
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		EF16DA362C58D00600E584FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA352C58D00600E584FF /* AppDelegate.swift */; };
 		EF16DA382C58D00600E584FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA372C58D00600E584FF /* SceneDelegate.swift */; };
-		EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA392C58D00600E584FF /* ViewController.swift */; };
 		EF16DA422C58D00700E584FF /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EF16DA412C58D00700E584FF /* Base */; };
 		EF16DA4A2C58D37000E584FF /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF16DA492C58D37000E584FF /* PickerViewController.swift */; };
 		EF16DA4D2C58D3B700E584FF /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = EF16DA4C2C58D3B700E584FF /* SnapKit */; };
@@ -53,7 +52,6 @@
 		EF16DA322C58D00600E584FF /* PracticingRxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PracticingRxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF16DA352C58D00600E584FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EF16DA372C58D00600E584FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EF16DA392C58D00600E584FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EF16DA412C58D00700E584FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF16DA432C58D00700E584FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF16DA492C58D37000E584FF /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 				EF16DA5D2C58F2A800E584FF /* Custom */,
 				EF16DA352C58D00600E584FF /* AppDelegate.swift */,
 				EF16DA372C58D00600E584FF /* SceneDelegate.swift */,
-				EF16DA392C58D00600E584FF /* ViewController.swift */,
 				EF16DA402C58D00700E584FF /* LaunchScreen.storyboard */,
 				EFF773172C5CF7B500CD2100 /* Resource.swift */,
 				EF16DA532C58D9AD00E584FF /* Base */,
@@ -357,7 +354,6 @@
 				EFF773102C5CF78500CD2100 /* SearchViewController.swift in Sources */,
 				EFF7730F2C5CF78500CD2100 /* SearchTableViewCell.swift in Sources */,
 				EFF7730D2C5CF78500CD2100 /* PhoneViewController.swift in Sources */,
-				EF16DA3A2C58D00600E584FF /* ViewController.swift in Sources */,
 				EFF773182C5CF7B500CD2100 /* Resource.swift in Sources */,
 				EFF773142C5CF78500CD2100 /* SignTextField.swift in Sources */,
 				EF16DA4A2C58D37000E584FF /* PickerViewController.swift in Sources */,

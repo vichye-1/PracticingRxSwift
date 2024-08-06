@@ -22,6 +22,7 @@ class PhoneViewModel {
     }
     
     struct Output {
+        let phoneData: BehaviorRelay<String>
         let validationState: Driver<ValidationState>
         let isNextButtonEnabled: Driver<Bool>
         let nextButtonColor: Driver<UIColor>
@@ -30,6 +31,7 @@ class PhoneViewModel {
     }
     
     func transform(input: Input) -> Output {
+        let phoneData = BehaviorRelay(value: "010")
         let validationState = input.phoneNumber
             .map { text -> ValidationState in
                 if !text.allSatisfy({$0.isNumber}) {
@@ -42,7 +44,7 @@ class PhoneViewModel {
             }
             .asDriver(onErrorJustReturn: .invalidCharacters)
         
-        let isNextButtonEnabled = validationState.map { $0 == .valid}
+        let isNextButtonEnabled = validationState.map { $0 == .valid }
         
         let nextButtonColor = validationState.map { $0 == .valid ? UIColor.systemBlue : UIColor.systemGray}
         
@@ -59,7 +61,7 @@ class PhoneViewModel {
         
         let navigateToNext = input.nextButtonTap.asDriver(onErrorJustReturn: ())
         
-        return Output(validationState: validationState, isNextButtonEnabled: isNextButtonEnabled, nextButtonColor: nextButtonColor, descriptionText: descriptionText, navigateToNext: navigateToNext)
+        return Output(phoneData: phoneData, validationState: validationState, isNextButtonEnabled: isNextButtonEnabled, nextButtonColor: nextButtonColor, descriptionText: descriptionText, navigateToNext: navigateToNext)
         
     }
     
