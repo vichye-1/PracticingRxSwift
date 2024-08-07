@@ -44,6 +44,18 @@ final class ShoppingViewController: BaseViewController {
         button.backgroundColor = .systemGray5
         return button
     }()
+    private let shoppingCollectionView = {
+        let view = UICollectionView(frame: .zero, collectionViewLayout: layout())
+        return view
+    }()
+    
+    static func layout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 120, height: 40)
+        layout.scrollDirection = .horizontal
+        return layout
+    }
+    
     private let shoppingTableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.register(ShoppingTableViewCell.self, forCellReuseIdentifier: ShoppingTableViewCell.identifier)
@@ -58,7 +70,7 @@ final class ShoppingViewController: BaseViewController {
     
     // MARK: - UI configuration
     override func configureHierarchy() {
-        [backgroundView, addTextField, addButton, shoppingTableView].forEach { view.addSubview($0) }
+        [backgroundView, addTextField, addButton, shoppingCollectionView, shoppingTableView].forEach { view.addSubview($0) }
     }
     override func configureLayout() {
         backgroundView.snp.makeConstraints { make in
@@ -76,10 +88,18 @@ final class ShoppingViewController: BaseViewController {
             make.verticalEdges.equalTo(backgroundView).inset(20)
             make.width.equalTo(55)
         }
+        shoppingCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(backgroundView.snp.bottom).offset(16)
+            make.horizontalEdges.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
         shoppingTableView.snp.makeConstraints { make in
-            make.top.equalTo(backgroundView.snp.bottom)
+            make.top.equalTo(shoppingCollectionView.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    override func configureView() {
+        shoppingCollectionView.register(ShoppingCollectionViewCell.self, forCellWithReuseIdentifier: ShoppingCollectionViewCell.identifier)
     }
     
     private func bind() {
@@ -87,9 +107,16 @@ final class ShoppingViewController: BaseViewController {
             addButtonTapped: addButton.rx.tap.asObservable(),
             newItem: addTextField.rx.text.orEmpty.asObservable(),
             checkButtonTapped: checkButtonClicked.asObservable(),
-            favoriteButtonTapped: favoriteButtonClicked.asObservable())
+            favoriteButtonTapped: favoriteButtonClicked.asObservable(),
+            collectionViewItemSelected: shoppingCollectionView.rx.modelSelected(String.self).asObservable())
         
         let output = viewModel.transform(input: input)
+        
+        output.recentList
+            .bind(to: shoppingCollectionView.rx.items(cellIdentifier: ShoppingCollectionViewCell.identifier, cellType: ShoppingCollectionViewCell.self)) { (row, element, cell) in
+                cell.configure(text: element)
+            }
+            .disposed(by: disposeBag)
         
         output.items
             .drive(shoppingTableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { [weak self] (row, element, cell) in

@@ -10,17 +10,6 @@ import RxSwift
 import RxCocoa
 
 class ShoppingViewModel {
-    struct Input {
-        let addButtonTapped: Observable<Void>
-        let newItem: Observable<String>
-        let checkButtonTapped: Observable<Int>
-        let favoriteButtonTapped: Observable<Int>
-    }
-    
-    struct Output {
-        let items: Driver<[ShoppingItem]>
-    }
-    
     private let disposeBag = DisposeBag()
     
     private let items = BehaviorRelay<[ShoppingItem]>(value: [
@@ -30,7 +19,29 @@ class ShoppingViewModel {
         ShoppingItem(bought: true, wantToBuy: "모니터", favorite: false)
     ])
     
+    private var recentList = BehaviorRelay<[String]>(value: ["Xcode 버그 없애기", "과제 끝내기", "힘내기", "할수있다🍀"])
+    
+    struct Input {
+        let addButtonTapped: Observable<Void>
+        let newItem: Observable<String>
+        let checkButtonTapped: Observable<Int>
+        let favoriteButtonTapped: Observable<Int>
+        let collectionViewItemSelected: Observable<String>
+    }
+    
+    struct Output {
+        let items: Driver<[ShoppingItem]>
+        let recentList: BehaviorRelay<[String]>
+    }
+    
     func transform(input: Input) -> Output {
+        
+        input.collectionViewItemSelected
+            .withLatestFrom(items) { (selectedItem, currentItems) in
+                    currentItems + [ShoppingItem(bought: false, wantToBuy: selectedItem, favorite: false)]
+            }
+            .bind(to: items)
+            .disposed(by: disposeBag)
         
         input.addButtonTapped
             .withLatestFrom(input.newItem)
@@ -62,6 +73,6 @@ class ShoppingViewModel {
             .bind(to: items)
             .disposed(by: disposeBag)
         
-        return Output(items: items.asDriver())
+        return Output(items: items.asDriver(), recentList: recentList)
     }
 }
