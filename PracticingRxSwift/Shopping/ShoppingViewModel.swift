@@ -42,6 +42,26 @@ class ShoppingViewModel {
             .bind(to: items)
             .disposed(by: disposeBag)
         
+        input.checkButtonTapped
+            .withLatestFrom(items) { ($0, $1) }
+            .map { (index, items) -> [ShoppingItem] in
+                var updatedItems = items
+                updatedItems[index].bought.toggle()
+                return updatedItems
+            }
+            .bind(to: items)
+            .disposed(by: disposeBag)
+        
+        input.favoriteButtonTapped
+            .withLatestFrom(items) { ($0, $1) }
+            .map { (index, items) -> [ShoppingItem] in
+                var updatedItems = items
+                updatedItems[index].favorite.toggle()
+                return updatedItems
+            }
+            .bind(to: items)
+            .disposed(by: disposeBag)
+        
         return Output(items: items.asDriver())
     }
 }

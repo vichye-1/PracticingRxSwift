@@ -69,5 +69,13 @@ final class ShoppingTableViewCell: BaseTableViewCell {
         titleLabel.text = item.wantToBuy
         checkmarkButton.setImage(UIImage(systemName: item.bought ? "checkmark.square": "square"), for: .normal)
         favoriteButton.setImage(UIImage(systemName: item.favorite ? "star.fill" : "star"), for: .normal)
+        
+        checkmarkButton.rx.tap
+            .bind(to: checkmarkTapped)
+            .disposed(by: disposeBag)
+        
+        favoriteButton.rx.tap
+            .bind(to: favoriteTapped)
+            .disposed(by: disposeBag)
     }
 }

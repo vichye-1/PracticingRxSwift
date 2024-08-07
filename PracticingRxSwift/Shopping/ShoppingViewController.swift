@@ -92,10 +92,21 @@ final class ShoppingViewController: BaseViewController {
         let output = viewModel.transform(input: input)
         
         output.items
-            .drive(shoppingTableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
+            .drive(shoppingTableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { [weak self] (row, element, cell) in
                 cell.configure(item: element)
+                
+                guard let self = self else { return }
+                
+                cell.checkmarkTapped
+                    .map { row }
+                    .bind(to: self.checkButtonClicked)
+                    .disposed(by: cell.disposeBag)
+                
+                cell.favoriteTapped
+                    .map { row }
+                    .bind(to: self.favoriteButtonClicked)
+                    .disposed(by: cell.disposeBag)
             }
             .disposed(by: disposeBag)
-        
     }
 }
