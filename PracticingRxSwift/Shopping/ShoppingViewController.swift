@@ -19,12 +19,12 @@ struct ShoppingItem {
 final class ShoppingViewController: BaseViewController {
     
     private let disposeBag = DisposeBag()
-    private let addButtonTapped = PublishRelay<Void>()
+    private let viewModel = ShoppingViewModel()
     private let checkButtonClicked = PublishRelay<Int>()
     private let favoriteButtonClicked = PublishRelay<Int>()
     
     private let backgroundView = {
-       let view = UIView()
+        let view = UIView()
         view.layer.cornerRadius = 14
         view.backgroundColor = .systemGray6
         return view
@@ -50,13 +50,6 @@ final class ShoppingViewController: BaseViewController {
         tableView.backgroundColor = .white
         return tableView
     }()
-    
-    private var items = BehaviorRelay<[ShoppingItem]>(value: [
-        ShoppingItem(bought: false, wantToBuy: "에어팟 맥스", favorite: true),
-        ShoppingItem(bought: false, wantToBuy: "아이폰16Pro 1TB", favorite: false),
-        ShoppingItem(bought: true, wantToBuy: "애플워치 신형", favorite: true),
-        ShoppingItem(bought: true, wantToBuy: "모니터", favorite: false)
-    ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,65 +83,19 @@ final class ShoppingViewController: BaseViewController {
     }
     
     private func bind() {
-        let identifier = ShoppingTableViewCell.identifier
-        items
-            .bind(to: shoppingTableView.rx.items(cellIdentifier: identifier, cellType: ShoppingTableViewCell.self)) { [weak self] (row, item, cell) in
-                cell.configure(item: item)
-                
-                guard let self = self else { return }
-                
-                cell.checkmarkTapped
-                    .map { row }
-                    .bind(to: self.checkButtonClicked)
-                    .disposed(by: cell.disposeBag)
-                
-                cell.favoriteTapped
-                    .map { row }
-                    .bind(to: self.favoriteButtonClicked)
-                    .disposed(by: cell.disposeBag)
-            }
-            .disposed(by: disposeBag)
+        let input = ShoppingViewModel.Input(
+            addButtonTapped: addButton.rx.tap.asObservable(),
+            newItem: addTextField.rx.text.orEmpty.asObservable(),
+            checkButtonTapped: checkButtonClicked.asObservable(),
+            favoriteButtonTapped: favoriteButtonClicked.asObservable())
         
-        checkButtonClicked
-            .do(onNext: { _ in
-                print("checkmarkClicked")
-            })
-            .withLatestFrom(items) { ($0, $1) }
-            .map { (index, items) -> [ShoppingItem] in
-                var updatedItems = items
-                updatedItems[index].bought.toggle()
-                return updatedItems
-            }
-            .bind(to: items)
-            .disposed(by: disposeBag)
+        let output = viewModel.transform(input: input)
         
-        favoriteButtonClicked
-            .do(onNext: { _ in
-                print("favoriteButtonClicked")
-            })
-            .withLatestFrom(items) { ($0, $1) }
-            .map { (index, items) -> [ShoppingItem] in
-                    var updatedItems = items
-                updatedItems[index].favorite.toggle()
-                return updatedItems
+        output.items
+            .drive(shoppingTableView.rx.items(cellIdentifier: ShoppingTableViewCell.identifier, cellType: ShoppingTableViewCell.self)) { (row, element, cell) in
+                cell.configure(item: element)
             }
-            .bind(to: items)
-            .disposed(by: disposeBag)
-        
-        addButtonTapped
-            .withLatestFrom(addTextField.rx.text.orEmpty)
-            .filter { !$0.isEmpty }
-            .withLatestFrom(items) { (text, items) -> [ShoppingItem] in
-                    let newItem = ShoppingItem(bought: false, wantToBuy: text, favorite: false)
-                return items + [newItem]
-            }
-            .bind(to: items)
-            .disposed(by: disposeBag)
-        
-        addButton.rx.tap
-            .bind(to: addButtonTapped)
             .disposed(by: disposeBag)
         
     }
-    
 }

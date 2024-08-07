@@ -13,13 +13,8 @@ import RxCocoa
 final class ShoppingTableViewCell: BaseTableViewCell {
     var disposeBag = DisposeBag()
     
-    var checkmarkTapped: ControlEvent<Void> {
-        return checkmarkButton.rx.tap
-    }
-    
-    var favoriteTapped: ControlEvent<Void> {
-        return favoriteButton.rx.tap
-    }
+    var checkmarkTapped = PublishRelay<Void>()
+    var favoriteTapped = PublishRelay<Void>()
     
     private let checkmarkButton = {
         let button = UIButton()
