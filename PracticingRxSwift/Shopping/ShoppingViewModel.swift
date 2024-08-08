@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class ShoppingViewModel {
+final class ShoppingViewModel {
     private let disposeBag = DisposeBag()
     
     private let items = BehaviorRelay<[ShoppingItem]>(value: [
